@@ -157,7 +157,7 @@
     </div>
   </section>
 
-  <!-- ================= ARCHITECTURE SECTION ================= -->
+<!-- ================= ARCHITECTURE SECTION ================= -->
   <section id="overview" class="py-20 px-6 border-b border-borderDark">
     <div class="max-w-7xl mx-auto">
       
@@ -174,10 +174,10 @@
           <div class="w-12 h-12 rounded-xl bg-accentBlue/10 border border-accentBlue/20 text-accentBlue flex items-center justify-center font-bold text-xl mb-6">1</div>
           <h4 class="text-xl font-bold text-white mb-3">Shannon Entropy Routing</h4>
           <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Calculates instantaneous logit uncertainty in real time ($H_t = -\sum p_i \log_2 p_i$). Routine syntax and predictable tokens are routed to sub-byte execution, reserving full FP16 precision for complex reasoning transitions.
+            Calculates instantaneous logit uncertainty in real time (<span class="font-mono text-gray-200"><i>H<sub>t</sub></i> = −∑ <i>p<sub>i</sub></i> log<sub>2</sub> <i>p<sub>i</sub></i></span>). Routine syntax and predictable tokens are routed to sub-byte execution, reserving full FP16 precision for complex reasoning transitions.
           </p>
           <div class="font-mono text-xs text-accentBlue bg-bgDark p-3 rounded-lg border border-borderDark">
-            H_t &lt; θ_low → Shift to INT4 High Gear
+            <i>H<sub>t</sub></i> &lt; θ<sub>low</sub> → Shift to INT4 High Gear
           </div>
         </div>
 
@@ -186,7 +186,7 @@
           <div class="w-12 h-12 rounded-xl bg-accentGreen/10 border border-accentGreen/20 text-accentGreen flex items-center justify-center font-bold text-xl mb-6">2</div>
           <h4 class="text-xl font-bold text-white mb-3">Schmitt-Trigger Clutch</h4>
           <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Prevents pipeline thrashing and "gear hunting" across sentence boundaries via a dual-threshold deadband ($\theta_{\text{low}}, \theta_{\text{high}}, h$) and smoothed moving entropy window ($W=3$).
+            Prevents pipeline thrashing and "gear hunting" across sentence boundaries via a dual-threshold deadband (<span class="font-mono text-gray-200">θ<sub>low</sub>, θ<sub>high</sub>, <i>h</i></span>) and smoothed moving entropy window (<span class="font-mono text-gray-200"><i>W</i> = 3</span>).
           </p>
           <div class="font-mono text-xs text-accentGreen bg-bgDark p-3 rounded-lg border border-borderDark">
             Hysteresis deadband prevents stalls
@@ -198,7 +198,7 @@
           <div class="w-12 h-12 rounded-xl bg-accentPurple/10 border border-accentPurple/20 text-accentPurple flex items-center justify-center font-bold text-xl mb-6">3</div>
           <h4 class="text-xl font-bold text-white mb-3">Speculative Verification</h4>
           <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Pairs ultra-lightweight draft scouts (1B / sub-byte) with 8B–70B target verifiers in a unified VRAM pool. Achieves 50.4%+ draft acceptance, validating multi-token blocks in a single memory fetch.
+            Pairs ultra-lightweight draft scouts (<span class="font-mono text-gray-200">1B / INT4</span>) with target verifiers (<span class="font-mono text-gray-200">8B–70B</span>) in a unified VRAM pool. Achieves 50.4%+ draft acceptance, validating multi-token blocks in a single memory fetch.
           </p>
           <div class="font-mono text-xs text-accentPurple bg-bgDark p-3 rounded-lg border border-borderDark">
             1-Pass parallel multi-token validation
