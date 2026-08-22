@@ -210,7 +210,7 @@
     </div>
   </section>
 
-  <!-- ================= DATACENTER CALCULATOR ================= -->
+<!-- ================= DATACENTER CALCULATOR (USD) ================= -->
   <section id="calculator" class="py-20 px-6 border-b border-borderDark bg-cardDark/20">
     <div class="max-w-5xl mx-auto">
       
@@ -243,10 +243,10 @@
 
             <div>
               <div class="flex justify-between text-sm font-medium mb-2">
-                <span class="text-gray-300">Electricity Cost (SEK / kWh):</span>
-                <span id="cost-val" class="font-mono text-accentPurple font-bold">1.40 SEK/kWh</span>
+                <span class="text-gray-300">Electricity Cost ($ / kWh):</span>
+                <span id="cost-val" class="font-mono text-accentPurple font-bold">$0.12 / kWh</span>
               </div>
-              <input type="range" id="cost-slider" min="0.5" max="4.0" step="0.1" value="1.40" class="w-full accent-accentPurple cursor-pointer">
+              <input type="range" id="cost-slider" min="0.05" max="0.30" step="0.01" value="0.12" class="w-full accent-accentPurple cursor-pointer">
             </div>
           </div>
 
@@ -261,7 +261,7 @@
 
             <div>
               <div class="text-xs text-gray-400">Annual OpEx Reduction:</div>
-              <div id="cost-saved" class="text-3xl font-extrabold text-accentBlue font-mono">2.55 MSEK / yr</div>
+              <div id="cost-saved" class="text-3xl font-extrabold text-accentBlue font-mono">$218,880 / yr</div>
             </div>
 
             <div>
@@ -325,12 +325,12 @@
     </div>
   </footer>
 
-  <!-- ================= SCRIPTS ================= -->
+ <!-- ================= SCRIPTS ================= -->
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Datacenter ROI Calculator Logic
+    // Datacenter ROI Calculator Logic (USD)
     const gpuSlider = document.getElementById('gpu-slider');
     const querySlider = document.getElementById('query-slider');
     const costSlider = document.getElementById('cost-slider');
@@ -346,21 +346,27 @@
     function updateCalculator() {
       const gpus = parseInt(gpuSlider.value);
       const queries = parseInt(querySlider.value);
-      const sekPerKwh = parseFloat(costSlider.value);
+      const usdPerKwh = parseFloat(costSlider.value);
 
       gpuVal.textContent = `${gpus.toLocaleString()} GPUs`;
       queryVal.textContent = `${queries.toLocaleString()} tokens/day`;
-      costVal.textContent = `${sekPerKwh.toFixed(2)} SEK/kWh`;
+      costVal.textContent = `$${usdPerKwh.toFixed(2)} / kWh`;
 
       // Energy math: baseline 6.40 J/tok -> SDSIE 3.41 J/tok => Delta = 2.99 J/token
       const joulesSavedDaily = queries * gpus * 2.99;
       const kwhSavedDaily = joulesSavedDaily / 3600000;
       const mwhSavedAnnual = (kwhSavedDaily * 365) / 1000;
-      const sekSavedAnnual = (mwhSavedAnnual * 1000) * sekPerKwh;
-      const co2TonsAnnual = mwhSavedAnnual * 0.26; // ~0.26 tons CO2e per MWh European average
+      const usdSavedAnnual = (mwhSavedAnnual * 1000) * usdPerKwh;
+      const co2TonsAnnual = mwhSavedAnnual * 0.26; // ~0.26 tons CO2e per MWh average
 
       mwhOut.textContent = `${Math.round(mwhSavedAnnual).toLocaleString()} MWh / yr`;
-      costOut.textContent = `${(sekSavedAnnual / 1000000).toFixed(2)} MSEK / yr`;
+      
+      if (usdSavedAnnual >= 1000000) {
+        costOut.textContent = `$${(usdSavedAnnual / 1000000).toFixed(2)}M / yr`;
+      } else {
+        costOut.textContent = `$${Math.round(usdSavedAnnual).toLocaleString()} / yr`;
+      }
+
       co2Out.textContent = `${Math.round(co2TonsAnnual).toLocaleString()} Metric Tons CO2e`;
     }
 
