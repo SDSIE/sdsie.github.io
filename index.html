@@ -56,7 +56,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accentBlue to-accentGreen flex items-center justify-center text-bgDark font-bold font-mono text-lg">⚡</div>
-        <span class="text-white font-bold text-lg tracking-tight">SDSIE <span class="text-xs font-mono px-2 py-0.5 rounded bg-cardDark border border-borderDark text-accentGreen ml-2">v1.1.1</span></span>
+        <span class="text-white font-bold text-lg tracking-tight">SDSIE <span class="text-xs font-mono px-2 py-0.5 rounded bg-cardDark border border-borderDark text-accentGreen ml-2">v2.0.1</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="#overview" class="hover:text-accentBlue transition">Architecture</a>
@@ -122,8 +122,8 @@
             <span class="text-xs font-mono uppercase text-gray-400">Energy Expenditure</span>
             <i data-lucide="zap" class="w-5 h-5 text-accentGreen"></i>
           </div>
-          <div class="text-3xl font-extrabold text-white mb-1">-46.7%</div>
-          <p class="text-sm text-gray-400">Per-token energy reduced from <span class="text-gray-200">6.40 J down to 3.41 J</span> via speculative scouting.</p>
+          <div class="text-3xl font-extrabold text-white mb-1">-32.5% to -60.0%</div>
+          <p class="text-sm text-gray-400">Per-token energy reduction from real scout&rarr;target speculative decoding, N=10 trials/prompt. Scales with draft-acceptance rate (workload-dependent, not a flat constant).</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
@@ -137,11 +137,11 @@
 
         <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono uppercase text-gray-400">Code Compressibility</span>
+            <span class="text-xs font-mono uppercase text-gray-400">High-Gear Utilization (Code)</span>
             <i data-lucide="code" class="w-5 h-5 text-accentPurple"></i>
           </div>
           <div class="text-3xl font-extrabold text-white mb-1">94.7%</div>
-          <p class="text-sm text-gray-400">Sub-byte High-Gear duty cycle achieved on structured code and reasoning tokens.</p>
+          <p class="text-sm text-gray-400">Fraction of generation steps in the entropy-gate's high-precision-savings mode on code-generation prompts. Gate is validated in isolation; not yet wired to a running generation loop.</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
@@ -149,8 +149,8 @@
             <span class="text-xs font-mono uppercase text-gray-400">Kernel Latency</span>
             <i data-lucide="clock" class="w-5 h-5 text-accentOrange"></i>
           </div>
-          <div class="text-3xl font-extrabold text-white mb-1">74.2 µs</div>
-          <p class="text-sm text-gray-400">Zero-stall on-chip SRAM dequantization on Blackwell Tensor Cores.</p>
+          <div class="text-3xl font-extrabold text-white mb-1">76.5 µs</div>
+          <p class="text-sm text-gray-400">Isolated INT4 GEMM latency, real branching kernel test (M=1). Only ~4% faster than FP16 at this batch size &mdash; bandwidth savings do not yet translate to proportional latency gains; see paper Section 4.2.</p>
         </div>
 
       </div>
@@ -217,7 +217,17 @@
       <div class="text-center mb-12">
         <h2 class="text-xs font-mono uppercase text-accentPurple tracking-widest mb-3">Macro-Thermodynamics</h2>
         <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Datacenter Scale & OpEx Calculator</h3>
-        <p class="text-gray-400">Estimate enterprise power grid relief, carbon reductions, and annual cost savings using verified SDSIE metrics.</p>
+        <p class="text-gray-400">Estimate enterprise power grid relief, carbon reductions, and annual cost savings using validated component-level SDSIE metrics.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto mb-8 p-4 rounded-xl bg-accentOrange/10 border border-accentOrange/40 text-sm text-gray-300">
+        <strong class="text-accentOrange">Experimental &mdash; provisional projection.</strong>
+        This calculator uses the <em>conservative (low)</em> end of our real, measured energy-per-token
+        reduction range (32.5%&ndash;60.0%, workload-dependent; see the <a href="https://github.com/Creepybits/software-defined-stochastic-inference-engine" class="underline text-accentGreen">repo README</a> for full methodology).
+        It projects savings from the validated <em>speculative decoding</em> component alone.
+        SDSIE does not yet have a unified, end-to-end integrated serving path combining quantization,
+        entropy gating, and speculation &mdash; so this is a projection from one validated component,
+        not a measurement of the full system.
       </div>
 
       <div class="p-8 md:p-12 rounded-3xl bg-cardDark border border-borderDark">
@@ -235,7 +245,7 @@
 
             <div>
               <div class="flex justify-between text-sm font-medium mb-2">
-                <span class="text-gray-300">Daily Query Volume:</span>
+                <span class="text-gray-300">Daily Token Volume (per GPU):</span>
                 <span id="query-count-val" class="font-mono text-accentGreen font-bold">5,000,000 tokens/day</span>
               </div>
               <input type="range" id="query-slider" min="500000" max="50000000" step="500000" value="5000000" class="w-full accent-accentGreen cursor-pointer">
@@ -297,7 +307,7 @@
   month        = aug,
   year         = 2026,
   publisher    = {Zenodo},
-  version      = {v1.1.0},
+  version      = {v2.0.1},
   doi          = {10.5281/zenodo.21499379},
   url          = {https://doi.org/10.5281/zenodo.21499379}
 }</pre>
@@ -352,8 +362,12 @@
       queryVal.textContent = `${queries.toLocaleString()} tokens/day`;
       costVal.textContent = `$${usdPerKwh.toFixed(2)} / kWh`;
 
-      // Energy math: baseline 6.40 J/tok -> SDSIE 3.41 J/tok => Delta = 2.99 J/token
-      const joulesSavedDaily = queries * gpus * 2.99;
+      // Energy math (conservative/low-end of real, measured range): poem-prompt baseline
+      // 12.42 J/tok -> speculative 8.38 J/tok => Delta = 4.04 J/token (32.5% reduction).
+      // This is the LOW end of our validated range (up to 60.0% on code-generation
+      // workloads); using the conservative figure here by design. See README/paper for
+      // the full N=10-trial, per-workload breakdown -- this is not a flat constant in reality.
+      const joulesSavedDaily = queries * gpus * 4.04;
       const kwhSavedDaily = joulesSavedDaily / 3600000;
       const mwhSavedAnnual = (kwhSavedDaily * 365) / 1000;
       const usdSavedAnnual = (mwhSavedAnnual * 1000) * usdPerKwh;
