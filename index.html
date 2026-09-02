@@ -122,8 +122,8 @@
             <span class="text-xs font-mono uppercase text-gray-400">Energy Expenditure</span>
             <i data-lucide="zap" class="w-5 h-5 text-accentGreen"></i>
           </div>
-          <div class="text-3xl font-extrabold text-white mb-1">-32.5% to -60.0%</div>
-          <p class="text-sm text-gray-400">Per-token energy reduction from real scout&rarr;target speculative decoding, N=10 trials/prompt. Scales with draft-acceptance rate (workload-dependent, not a flat constant).</p>
+          <div class="text-3xl font-extrabold text-white mb-1">-32.6% to -60.3%</div>
+          <p class="text-sm text-gray-400">Per-token energy reduction from real scout&rarr;target speculative decoding, N=10 trials/prompt. Scales with draft-acceptance rate (workload-dependent, not a flat constant). See the <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" class="underline text-accentGreen">fixed-K5 spin-off repository</a> for full methodology and raw telemetry.</p>
         </div>
 
         <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
@@ -153,6 +153,56 @@
           <p class="text-sm text-gray-400">Isolated INT4 GEMM latency, real branching kernel test (M=1). Only ~4% faster than FP16 at this batch size &mdash; bandwidth savings do not yet translate to proportional latency gains; see paper Section 4.2.</p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FIXED-K5 SPINOFF CALLOUT ================= -->
+  <section class="py-16 px-6 border-b border-borderDark">
+    <div class="max-w-5xl mx-auto">
+      <div class="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-accentGreen/10 to-accentBlue/10 border border-accentGreen/30">
+        <div class="flex flex-col md:flex-row md:items-center gap-8">
+          <div class="flex-1">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accentGreen/15 border border-accentGreen/40 text-xs font-mono text-accentGreen mb-4">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> FULLY VALIDATED SPIN-OFF
+            </span>
+            <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Fixed-K=5 Speculative Decoding</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              SDSIE above is an ambitious, ongoing research project &mdash; the entropy-gated dynamic
+              mechanism is validated in isolation but not yet wired into a live serving loop (see
+              the metrics and caveats above). One specific piece of it, however, is fully proven
+              end-to-end: real scout&rarr;target speculative decoding with a fixed draft window
+              (K=5), 100% lossless output fidelity, independently reproducible from a standalone
+              open-source repository with its own DOI and raw telemetry.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" target="_blank" class="px-5 py-2.5 rounded-lg bg-accentGreen text-bgDark font-semibold text-sm hover:bg-green-400 transition flex items-center gap-2">
+                <i data-lucide="github" class="w-4 h-4"></i> View Repository
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.22210487" target="_blank" class="px-5 py-2.5 rounded-lg bg-cardDark border border-borderDark text-white hover:border-accentGreen text-sm font-medium transition flex items-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4"></i> DOI: 10.5281/zenodo.22210487
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 md:w-72 shrink-0">
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentGreen">+82.3%</div>
+              <div class="text-xs text-gray-400 mt-1">Max speedup (code)</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentBlue">-60.3%</div>
+              <div class="text-xs text-gray-400 mt-1">Max energy/token</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentPurple">100%</div>
+              <div class="text-xs text-gray-400 mt-1">Output fidelity</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-white">N=10</div>
+              <div class="text-xs text-gray-400 mt-1">Trials/prompt</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -198,7 +248,7 @@
           <div class="w-12 h-12 rounded-xl bg-accentPurple/10 border border-accentPurple/20 text-accentPurple flex items-center justify-center font-bold text-xl mb-6">3</div>
           <h4 class="text-xl font-bold text-white mb-3">Speculative Verification</h4>
           <p class="text-sm text-gray-400 leading-relaxed mb-4">
-            Pairs ultra-lightweight draft scouts (<span class="font-mono text-gray-200">1B / INT4</span>) with target verifiers (<span class="font-mono text-gray-200">8B–70B</span>) in a unified VRAM pool. Achieves 50.4%+ draft acceptance, validating multi-token blocks in a single memory fetch.
+            Pairs ultra-lightweight draft scouts (<span class="font-mono text-gray-200">1B / INT4</span>) with target verifiers (<span class="font-mono text-gray-200">8B–70B</span>) in a unified VRAM pool. Achieves 42.5%–85.4% draft acceptance depending on workload predictability (N=10 trials/prompt), validating multi-token blocks in a single memory fetch.
           </p>
           <div class="font-mono text-xs text-accentPurple bg-bgDark p-3 rounded-lg border border-borderDark">
             1-Pass parallel multi-token validation
@@ -223,7 +273,7 @@
       <div class="max-w-3xl mx-auto mb-8 p-4 rounded-xl bg-accentOrange/10 border border-accentOrange/40 text-sm text-gray-300">
         <strong class="text-accentOrange">Experimental &mdash; provisional projection.</strong>
         This calculator uses the <em>conservative (low)</em> end of our real, measured energy-per-token
-        reduction range (32.5%&ndash;60.0%, workload-dependent; see the <a href="https://github.com/Creepybits/software-defined-stochastic-inference-engine" class="underline text-accentGreen">repo README</a> for full methodology).
+        reduction range (32.6%&ndash;60.3%, workload-dependent; see the <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" class="underline text-accentGreen">fixed-K5 spin-off repo</a> for full methodology).
         It projects savings from the validated <em>speculative decoding</em> component alone.
         SDSIE does not yet have a unified, end-to-end integrated serving path combining quantization,
         entropy gating, and speculation &mdash; so this is a projection from one validated component,
@@ -363,11 +413,11 @@
       costVal.textContent = `$${usdPerKwh.toFixed(2)} / kWh`;
 
       // Energy math (conservative/low-end of real, measured range): poem-prompt baseline
-      // 12.42 J/tok -> speculative 8.38 J/tok => Delta = 4.04 J/token (32.5% reduction).
-      // This is the LOW end of our validated range (up to 60.0% on code-generation
-      // workloads); using the conservative figure here by design. See README/paper for
-      // the full N=10-trial, per-workload breakdown -- this is not a flat constant in reality.
-      const joulesSavedDaily = queries * gpus * 4.04;
+      // 11.58 J/tok -> speculative 7.80 J/tok => Delta = 3.78 J/token (32.6% reduction).
+      // This is the LOW end of our validated range (up to 60.3% on code-generation
+      // workloads); using the conservative figure here by design. See the fixed-K5 spin-off
+      // repo for the full N=10-trial, per-workload breakdown -- this is not a flat constant in reality.
+      const joulesSavedDaily = queries * gpus * 3.78;
       const kwhSavedDaily = joulesSavedDaily / 3600000;
       const mwhSavedAnnual = (kwhSavedDaily * 365) / 1000;
       const usdSavedAnnual = (mwhSavedAnnual * 1000) * usdPerKwh;
