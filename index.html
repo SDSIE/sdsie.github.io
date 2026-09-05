@@ -41,6 +41,7 @@
     .gradient-text {
       background: linear-gradient(135deg, #58a6ff 0%, #2ea043 50%, #bc8cff 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .card-glow:hover {
@@ -121,108 +122,6 @@
     </div>
   </header>
 
-  <!-- ================= FIXED-K5 SPINOFF CALLOUT ================= -->
-  <section id="k5" class="py-16 px-6 border-b border-borderDark">
-    <div class="max-w-5xl mx-auto">
-      <div class="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-accentGreen/10 to-accentBlue/10 border border-accentGreen/30">
-        <div class="flex flex-col md:flex-row md:items-center gap-8">
-          <div class="flex-1">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accentGreen/15 border border-accentGreen/40 text-xs font-mono text-accentGreen mb-4">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> FULLY VALIDATED SPIN-OFF
-            </span>
-            <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Fixed-K=5 Speculative Decoding</h3>
-            <p class="text-gray-400 leading-relaxed mb-4">
-              This is the fully validated, production-ready result from the SDSIE research line:
-              real scout&rarr;target speculative decoding with a fixed draft window (K=5), 100%
-              lossless output fidelity, independently reproducible from a standalone open-source
-              repository with its own DOI and raw telemetry. The broader SDSIE research project
-              below explores more ambitious adaptive mechanisms (entropy-gated speculation and
-              precision-switching) &mdash; both have been tested for real and, so far, found not to
-              improve on this simpler, fixed approach; see the research repo for the full,
-              honestly-reported account.
-            </p>
-            <div class="flex flex-wrap gap-3">
-              <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" target="_blank" class="px-5 py-2.5 rounded-lg bg-accentGreen text-bgDark font-semibold text-sm hover:bg-green-400 transition flex items-center gap-2">
-                <i data-lucide="github" class="w-4 h-4"></i> View Repository
-              </a>
-              <a href="https://doi.org/10.5281/zenodo.22210487" target="_blank" class="px-5 py-2.5 rounded-lg bg-cardDark border border-borderDark text-white hover:border-accentGreen text-sm font-medium transition flex items-center gap-2">
-                <i data-lucide="file-text" class="w-4 h-4"></i> DOI: 10.5281/zenodo.22210487
-              </a>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4 md:w-72 shrink-0">
-            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
-              <div class="text-2xl font-extrabold text-accentGreen">+78.5%</div>
-              <div class="text-xs text-gray-400 mt-1">Max speedup (code)</div>
-            </div>
-            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
-              <div class="text-2xl font-extrabold text-accentBlue">-59.3%</div>
-              <div class="text-xs text-gray-400 mt-1">Max energy/token</div>
-            </div>
-            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
-              <div class="text-2xl font-extrabold text-accentPurple">100%</div>
-              <div class="text-xs text-gray-400 mt-1">Output fidelity</div>
-            </div>
-            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
-              <div class="text-2xl font-extrabold text-white">N=10</div>
-              <div class="text-xs text-gray-400 mt-1">Trials/prompt</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CORE METRICS GRID (BROADER RESEARCH PROJECT) ================= -->
-  <section class="py-16 px-6 border-b border-borderDark bg-cardDark/30">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-10">
-        <h2 class="text-xs font-mono uppercase text-accentOrange tracking-widest mb-3">Broader Research Project</h2>
-        <p class="text-gray-400 text-sm">Component-level results from the ongoing research repository. Some components are validated;
-        the entropy-gated adaptive mechanisms below have real, characterized limitations &mdash; see the
-        <a href="https://github.com/Creepybits/software-defined-stochastic-inference-engine" class="underline text-accentBlue">research repo README</a> for the full account.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono uppercase text-gray-400">Energy Expenditure</span>
-            <i data-lucide="zap" class="w-5 h-5 text-accentGreen"></i>
-          </div>
-          <div class="text-3xl font-extrabold text-white mb-1">-32.2% to -59.3%</div>
-          <p class="text-sm text-gray-400">Per-token energy reduction from real scout&rarr;target speculative decoding, N=10 trials/prompt. Scales with draft-acceptance rate (workload-dependent, not a flat constant). See the <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" class="underline text-accentGreen">fixed-K5 spin-off repository</a> for full methodology and raw telemetry.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono uppercase text-gray-400">Memory Bus Traffic</span>
-            <i data-lucide="database" class="w-5 h-5 text-accentBlue"></i>
-          </div>
-          <div class="text-3xl font-extrabold text-white mb-1">-71.9%</div>
-          <p class="text-sm text-gray-400">Memory bandwidth cut per projection layer via custom Triton INT4 GEMM kernel.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono uppercase text-gray-400">Resolution Gear Fidelity Limit</span>
-            <i data-lucide="alert-triangle" class="w-5 h-5 text-accentOrange"></i>
-          </div>
-          <div class="text-3xl font-extrabold text-white mb-1">1 layer safe, 2+ collapses</div>
-          <p class="text-sm text-gray-400">Entropy-gated INT4/FP16 precision switching is now wired to real computation (not just logged): output matches an FP16 baseline closely at a single gated decoder layer, but fidelity collapses sharply (7&ndash;10% token match) at two or more &mdash; a real, characterized limitation, not a bug. Full data in the research repo README.</p>
-        </div>
-
-        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono uppercase text-gray-400">Kernel Latency</span>
-            <i data-lucide="clock" class="w-5 h-5 text-accentOrange"></i>
-          </div>
-          <div class="text-3xl font-extrabold text-white mb-1">76.5 µs</div>
-          <p class="text-sm text-gray-400">Isolated INT4 GEMM latency, real branching kernel test (M=1). Only ~4% faster than FP16 at this batch size &mdash; bandwidth savings do not yet translate to proportional latency gains; see paper Section 4.2.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
 <!-- ================= ARCHITECTURE SECTION ================= -->
   <section id="overview" class="py-20 px-6 border-b border-borderDark">
@@ -350,6 +249,109 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+    <!-- ================= FIXED-K5 SPINOFF CALLOUT ================= -->
+  <section id="k5" class="py-16 px-6 border-b border-borderDark">
+    <div class="max-w-5xl mx-auto">
+      <div class="p-8 md:p-10 rounded-3xl bg-gradient-to-br from-accentGreen/10 to-accentBlue/10 border border-accentGreen/30">
+        <div class="flex flex-col md:flex-row md:items-center gap-8">
+          <div class="flex-1">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accentGreen/15 border border-accentGreen/40 text-xs font-mono text-accentGreen mb-4">
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> FULLY VALIDATED SPIN-OFF
+            </span>
+            <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-3">Fixed-K=5 Speculative Decoding</h3>
+            <p class="text-gray-400 leading-relaxed mb-4">
+              This is the fully validated, production-ready result from the SDSIE research line:
+              real scout&rarr;target speculative decoding with a fixed draft window (K=5), 100%
+              lossless output fidelity, independently reproducible from a standalone open-source
+              repository with its own DOI and raw telemetry. The broader SDSIE research project
+              below explores more ambitious adaptive mechanisms (entropy-gated speculation and
+              precision-switching) &mdash; both have been tested for real and, so far, found not to
+              improve on this simpler, fixed approach; see the research repo for the full,
+              honestly-reported account.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" target="_blank" class="px-5 py-2.5 rounded-lg bg-accentGreen text-bgDark font-semibold text-sm hover:bg-green-400 transition flex items-center gap-2">
+                <i data-lucide="github" class="w-4 h-4"></i> View Repository
+              </a>
+              <a href="https://doi.org/10.5281/zenodo.22210487" target="_blank" class="px-5 py-2.5 rounded-lg bg-cardDark border border-borderDark text-white hover:border-accentGreen text-sm font-medium transition flex items-center gap-2">
+                <i data-lucide="file-text" class="w-4 h-4"></i> DOI: 10.5281/zenodo.22210487
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 md:w-72 shrink-0">
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentGreen">+78.5%</div>
+              <div class="text-xs text-gray-400 mt-1">Max speedup (code)</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentBlue">-59.3%</div>
+              <div class="text-xs text-gray-400 mt-1">Max energy/token</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-accentPurple">100%</div>
+              <div class="text-xs text-gray-400 mt-1">Output fidelity</div>
+            </div>
+            <div class="p-4 rounded-xl bg-bgDark border border-borderDark text-center">
+              <div class="text-2xl font-extrabold text-white">N=10</div>
+              <div class="text-xs text-gray-400 mt-1">Trials/prompt</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CORE METRICS GRID (BROADER RESEARCH PROJECT) ================= -->
+  <section class="py-16 px-6 border-b border-borderDark bg-cardDark/30">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-xs font-mono uppercase text-accentOrange tracking-widest mb-3">Broader Research Project</h2>
+        <p class="text-gray-400 text-sm">Component-level results from the ongoing research repository. Some components are validated;
+        the entropy-gated adaptive mechanisms below have real, characterized limitations &mdash; see the
+        <a href="https://github.com/Creepybits/software-defined-stochastic-inference-engine" class="underline text-accentBlue">research repo README</a> for the full account.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono uppercase text-gray-400">Energy Expenditure</span>
+            <i data-lucide="zap" class="w-5 h-5 text-accentGreen"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white mb-1">-32.2% to -59.3%</div>
+          <p class="text-sm text-gray-400">Per-token energy reduction from real scout&rarr;target speculative decoding, N=10 trials/prompt. Scales with draft-acceptance rate (workload-dependent, not a flat constant). See the <a href="https://github.com/Creepybits/sdsie-fixed-k5-speculative-decoding" class="underline text-accentGreen">fixed-K5 spin-off repository</a> for full methodology and raw telemetry.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono uppercase text-gray-400">Memory Bus Traffic</span>
+            <i data-lucide="database" class="w-5 h-5 text-accentBlue"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white mb-1">-71.9%</div>
+          <p class="text-sm text-gray-400">Memory bandwidth cut per projection layer via custom Triton INT4 GEMM kernel.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono uppercase text-gray-400">Resolution Gear Fidelity Limit</span>
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-accentOrange"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white mb-1">1 layer safe, 2+ collapses</div>
+          <p class="text-sm text-gray-400">Entropy-gated INT4/FP16 precision switching is now wired to real computation (not just logged): output matches an FP16 baseline closely at a single gated decoder layer, but fidelity collapses sharply (7&ndash;10% token match) at two or more &mdash; a real, characterized limitation, not a bug. Full data in the research repo README.</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-cardDark border border-borderDark card-glow transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono uppercase text-gray-400">Kernel Latency</span>
+            <i data-lucide="clock" class="w-5 h-5 text-accentOrange"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-white mb-1">76.5 µs</div>
+          <p class="text-sm text-gray-400">Isolated INT4 GEMM latency, real branching kernel test (M=1). Only ~4% faster than FP16 at this batch size &mdash; bandwidth savings do not yet translate to proportional latency gains; see paper Section 4.2.</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
